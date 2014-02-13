@@ -15,6 +15,7 @@ gem 'sidetiq', '0.5.0'
 
 gem 'mechanize' 
 gem 'rest-client'
+gem 'faraday_middleware', '~> 0.9.0'
 
 gem 'bootstrap-sass'
 
