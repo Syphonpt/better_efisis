@@ -11,10 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140204165930) do
+ActiveRecord::Schema.define(version: 20140221141207) do
 
   create_table "events", force: true do |t|
-    t.string   "market_id"
     t.integer  "date"
     t.string   "cc"
     t.integer  "home"
