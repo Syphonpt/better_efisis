@@ -1,7 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  runner_id: 1
+  selection_id: 1
   name: MyString
+  handicap: 1.5
 
 two:
+  runner_id: 1
+  selection_id: 1
   name: MyString
+  handicap: 1.5

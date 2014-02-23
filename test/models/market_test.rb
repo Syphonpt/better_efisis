@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class OddTest < ActiveSupport::TestCase
+class MarketTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

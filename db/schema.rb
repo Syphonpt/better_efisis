@@ -11,28 +11,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140221141207) do
-
-  create_table "events", force: true do |t|
-    t.integer  "date"
-    t.string   "cc"
-    t.integer  "home"
-    t.integer  "away"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "odds", force: true do |t|
-    t.float    "value"
-    t.integer  "type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "runners", force: true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+ActiveRecord::Schema.define(version: 0) do
 
 end
