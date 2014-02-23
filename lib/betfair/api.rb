@@ -83,9 +83,13 @@ module Betfair
 						'method' => 'SportsAPING/v1.0/listEvents',
 						'params' => { 
 							 'filter' => { 
-									'exchangeIds'	 => ['1'],
-									'eventTypeIds' => ['1'],
-									'bspOnly'			 => 'false'
+									'exchangeIds'			=> ['1'],
+									'eventTypeIds'		=> ['1'],
+									'bspOnly'					=> 'false',
+									'marketStartTime' => {
+										 'from' => Time.now,
+										 'to' => 2.day.from_now
+									}
 							 } 
 						}
 				 }
