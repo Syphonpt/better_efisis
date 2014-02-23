@@ -1,0 +1,101 @@
+{"marketId"=>"1.112939194", "marketName"=>"Match Odds", "marketStartTime"=>"2014-03-01T15:00:00.000Z", 
+	 "runners"=>[
+				 {"selectionId"=>69720, "runnerName"=>"Stoke", "handicap"=>0.0, "sortPriority"=>1, 
+						"metadata"=>{"runnerId"=>"62266753"}}, 
+				 {"selectionId"=>1096, "runnerName"=>"Arsenal", "handicap"=>0.0, "sortPriority"=>2, 
+						"metadata"=>{"runnerId"=>"62266754"}}, 
+				 {"selectionId"=>58805, "runnerName"=>"The Draw", "handicap"=>0.0, "sortPriority"=>3, 
+						"metadata"=>{"runnerId"=>"62266755"}}],
+
+{"marketId"=>"1.112939194", "isMarketDataDelayed"=>false, "status"=>"OPEN", "betDelay"=>0, "bspReconciled"=>false, "complete"=>true, "inplay"=>false, "numberOfWinners"=>1, "numberOfRunners"=>3, "numberOfActiveRunners"=>3, "lastMatchTime"=>"2014-02-22T17:18:38.250Z", "totalMatched"=>1855.72, "totalAvailable"=>157669.68, "crossMatching"=>true, "runnersVoidable"=>false, "version"=>692578021, 
+	 "runners"=>[
+			{"selectionId"=>69720, "handicap"=>0.0, "status"=>"ACTIVE", "lastPriceTraded"=>6.8, "totalMatched"=>379.47, 
+				 "ex"=>{"availableToBack"=>[
+									{"price"=>6.6, "size"=>151.47}, 
+									{"price"=>6.4, "size"=>349.0},
+									{"price"=>5.0, "size"=>21.76},
+									{"price"=>1.11, "size"=>4.73},
+									{"price"=>1.1, "size"=>120.94},
+									{"price"=>1.09, "size"=>134.24},
+									{"price"=>1.08, "size"=>151.17},
+									{"price"=>1.07, "size"=>172.94},
+									{"price"=>1.06, "size"=>201.96},
+									{"price"=>1.05, "size"=>241.88},
+									{"price"=>1.04, "size"=>5139.95},
+									{"price"=>1.03, "size"=>5240.33}, 
+									{"price"=>1.02, "size"=>16979.68},
+									{"price"=>1.01, "size"=>49021.68}
+							 ],
+							 "availableToLay"=>[
+									{"price"=>7.0, "size"=>98.96},
+									{"price"=>7.2, "size"=>56.0},
+									{"price"=>7.4, "size"=>98.41}
+							 ], 
+							 "tradedVolume"=>[
+									{"price"=>5.0, "size"=>1.23},
+									{"price"=>5.1, "size"=>9.67},
+									{"price"=>5.2, "size"=>11.48},
+									{"price"=>5.9, "size"=>48.41},
+									{"price"=>6.6, "size"=>211.9},
+									{"price"=>6.8, "size"=>96.75}
+							 ]
+						}
+				 },
+			{"selectionId"=>1096, "handicap"=>0.0, "status"=>"ACTIVE", "lastPriceTraded"=>1.61, "totalMatched"=>1467.0, 
+				 "ex"=>{"availableToBack"=>[
+									{"price"=>1.59, "size"=>271.26},
+									{"price"=>1.58, "size"=>290.25},
+									{"price"=>1.57, "size"=>169.21},
+									{"price"=>1.48, "size"=>3.7},
+									{"price"=>1.1, "size"=>120.94},
+									{"price"=>1.09, "size"=>134.24},
+									{"price"=>1.08, "size"=>151.17},
+									{"price"=>1.07, "size"=>172.94},
+									{"price"=>1.06, "size"=>201.96},
+									{"price"=>1.05, "size"=>241.88},
+									{"price"=>1.04, "size"=>5139.95},
+									{"price"=>1.03, "size"=>5240.33},
+									{"price"=>1.02, "size"=>16979.68},
+									{"price"=>1.01, "size"=>49022.89}
+							 ],
+							 "availableToLay"=>[
+									{"price"=>1.62, "size"=>277.0},
+									{"price"=>1.63, "size"=>50.0},
+									{"price"=>1.68, "size"=>6.53}
+							 ],
+							 "tradedVolume"=>[
+									{"price"=>1.47, "size"=>7.26},
+									{"price"=>1.5, "size"=>4.0},
+									{"price"=>1.57, "size"=>7.27},
+									{"price"=>1.58, "size"=>6.65},
+									{"price"=>1.59, "size"=>13.07},
+									{"price"=>1.6, "size"=>742.18},
+									{"price"=>1.61, "size"=>675.17},
+									{"price"=>1.67, "size"=>5.79},
+									{"price"=>1.68, "size"=>5.56}
+							 ]
+						}
+				 },
+			{"selectionId"=>58805, "handicap"=>0.0, "status"=>"ACTIVE", "lastPriceTraded"=>4.0, "totalMatched"=>9.24, 
+				 "ex"=>{"availableToBack"=>[
+									{"price"=>4.2, "size"=>103.64},
+									{"price"=>3.55, "size"=>33.86},
+									{"price"=>1.26, "size"=>2.0},
+									{"price"=>1.25, "size"=>2.41},
+									{"price"=>1.02, "size"=>4.48},
+									{"price"=>1.01, "size"=>413.88}
+							 ], 
+							 "availableToLay"=>[
+									{"price"=>4.4, "size"=>221.33},
+									{"price"=>4.5, "size"=>228.94}
+							 ],
+							 "tradedVolume"=>[
+									{"price"=>3.6, "size"=>4.83},
+									{"price"=>4.0, "size"=>2.41},
+									{"price"=>4.7, "size"=>1.99}
+							 ]
+						}
+			}
+	 ]
+	 }
+]
