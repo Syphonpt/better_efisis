@@ -6,7 +6,7 @@ class EventWorker
 	 Sidekiq.options[:poll_interval] = 1 
 
 	 recurrence do
-			hourly.minute_of_hour(0,10,20,30,40,50)
+			daily.hour_of_day(0)
 	 end
 
    def perform
