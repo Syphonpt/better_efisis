@@ -10,6 +10,8 @@ class EventWorker
 	 end
 
    def perform
+			Sidetiq.logger.info 'Starting..'
+
 			user				= User.where(auth: 1).first
 			api_account = user.account.where(service: 'betfair').first
 
@@ -18,19 +20,28 @@ class EventWorker
 
 			events['result'].each do |e|
 				 if e.valid_event?
-						event = Event.new
+						event					  = Event.new
 						event.id			  = e['event']['id']
 						event.name		  = e['event']['name']
 						event.cc			  = e['event']['countryCode']
 						event.open_date = e['event']['openDate']
 
+						if e['marketCount'] > 0
+							 api.get_market_catalogue(event.id)['result'].each do |m|
+									market							= Market.new
+									market.market_id		= m['marketId']
+									market.event_id			= event.id
+									market.name					= m['marketName']
+									market.total_matched = m['totalMatched']
+
+									market.save
+							 end
+						end
+
 						event.save
 
 				 else
-						Sidetiq.logger.info do
-							 "invalid event "+e.to_s
-						end
-
+						Sidetiq.logger.error "invalid event "+e.to_s
 				 end
 			end
 

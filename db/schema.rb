@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140309162426) do
+ActiveRecord::Schema.define(version: 20140310224214) do
 
   create_table "accounts", force: true do |t|
     t.string   "username"
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20140309162426) do
 
   create_table "events", force: true do |t|
     t.string   "name"
-    t.string   "open_date"
+    t.datetime "open_date"
     t.string   "cc"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -40,10 +40,11 @@ ActiveRecord::Schema.define(version: 20140309162426) do
 
   create_table "markets", force: true do |t|
     t.string   "name"
-    t.integer  "open_date"
+    t.float    "total_matched"
     t.integer  "event_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "market_id"
   end
 
   create_table "runners", force: true do |t|

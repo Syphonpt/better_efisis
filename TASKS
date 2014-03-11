@@ -1,0 +1,8 @@
+a/w/events.rb
+	 21: e.new_event?
+
+a/w/events.rb && a/w/odds_live.rb
+	 a parte de sacar o drone ... DRY it up!
+
+a/m/event.rb
+	 arranjar maneira de a query levar em conta a popularidade do mercado
