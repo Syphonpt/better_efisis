@@ -6,7 +6,7 @@ class EventWorker
 	 Sidekiq.options[:poll_interval] = 1 
 
 	 recurrence do
-			daily.hour_of_day(0)
+			hourly.minute_of_hour(25)
 	 end
 
    def perform
@@ -25,6 +25,7 @@ class EventWorker
 						event.name		  = e['event']['name']
 						event.cc			  = e['event']['countryCode']
 						event.open_date = e['event']['openDate']
+						event.status	  = 'unknown'
 
 						if e['marketCount'] > 0
 							 api.get_market_catalogue(event.id)['result'].each do |m|
