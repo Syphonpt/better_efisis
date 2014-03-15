@@ -25,7 +25,6 @@ module Betfair
 			def api_call(param,header = std_header)
 				 connection = Faraday.new(JSON_ENDPOINT, :headers => header ) do |b|
 						b.request		:json
-						b.response	:logger
 						b.response	:raise_error
 						b.response	:json, :content_type => ACCEPT
 						b.adapter		Faraday.default_adapter
@@ -124,6 +123,7 @@ module Betfair
 			end
 
 			def get_market_book(market_id)
+				 market_id = [market_id] unless market_id.class == Array
 				 header = {
 						'jsonrpc'=> '2.0',
 						'method' => 'SportsAPING/v1.0/listMarketBook',

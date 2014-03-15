@@ -1,4 +1,5 @@
 a/w/events.rb
+	 optimizar inserts
 	 21: e.new_event?
 
 a/w/events.rb && a/w/odds_live.rb
@@ -6,3 +7,10 @@ a/w/events.rb && a/w/odds_live.rb
 
 a/m/event.rb
 	 arranjar maneira de a query levar em conta a popularidade do mercado
+	 adicionar o campo de champioshinp e o model championship para motivos estatisticos 
+
+a/m/book.rb
+	 type => string (lay | back)
+
+l/b/api.rb
+	 error handling
