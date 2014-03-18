@@ -25,7 +25,6 @@ module Betfair
 			def api_call(param,header = std_header)
 				 connection = Faraday.new(JSON_ENDPOINT, :headers => header ) do |b|
 						b.request		:json
-						b.response	:logger
 						b.response	:raise_error
 						b.response	:json, :content_type => ACCEPT
 						b.adapter		Faraday.default_adapter
@@ -83,9 +82,13 @@ module Betfair
 						'method' => 'SportsAPING/v1.0/listEvents',
 						'params' => { 
 							 'filter' => { 
-									'exchangeIds'	 => ['1'],
-									'eventTypeIds' => ['1'],
-									'bspOnly'			 => 'false'
+									'exchangeIds'			=> ['1'],
+									'eventTypeIds'		=> ['1'],
+									'bspOnly'					=> 'false',
+									'marketStartTime' => {
+										 'from' => 2.hours.from_now,
+										 'to' => 2.days.from_now
+									}
 							 } 
 						}
 				 }
@@ -95,7 +98,14 @@ module Betfair
 				 response.body
 			end
 
+
+			# Devolve uma lista estática com informação dos mercados
+			# https://api.developer.betfair.com/services/webapps/docs/display/1smk3cen4v3lu3yomq5qye0ni/listMarketCatalogue
+			# TODO
+			#
 			def get_market_catalogue(event_id)
+				 event_id = [event_id] unless event_id.class == Array
+
 				 header = {
 						'jsonrpc'=> '2.0',
 						'method' => 'SportsAPING/v1.0/listMarketCatalogue',
@@ -113,6 +123,7 @@ module Betfair
 			end
 
 			def get_market_book(market_id)
+				 market_id = [market_id] unless market_id.class == Array
 				 header = {
 						'jsonrpc'=> '2.0',
 						'method' => 'SportsAPING/v1.0/listMarketBook',

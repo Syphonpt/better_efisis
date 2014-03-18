@@ -1,0 +1,19 @@
+drone deve suportar cookies e o seu expire time invez de estar sempre a fazer login
+
+a/w/events.rb
+	 optimizar inserts
+	 21: e.new_event?
+
+a/w/events.rb && a/w/odds_live.rb
+	 a parte de sacar o drone ... DRY it up!
+
+a/m/event.rb
+	 arranjar maneira de a query levar em conta a popularidade do mercado
+	 adicionar o campo de champioshinp e o model championship para motivos estatisticos 
+
+a/m/book.rb
+	 type => string (lay | back)
+	 remove updated_at
+
+l/b/api.rb
+	 error handling
