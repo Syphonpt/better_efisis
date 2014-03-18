@@ -6,45 +6,44 @@ class EventWorker
 	 Sidekiq.options[:poll_interval] = 1 
 
 	 recurrence do
-			daily.hour_of_day(12)
+#	daily.hour_of_day(18)
+			hourly.minute_of_hour(18)
 	 end
 
    def perform
-			user				= User.where(auth: 1).first
-			api_account = user.account.where(service: 'betfair').first
+			api_account = User.where(auth: 1).first.account.where(service: 'betfair').first
 
-			api = Betfair::API.new(api_account.username, api_account.password)
-			events = api.get_all_events
+			api			 = Betfair::API.new(api_account.username, api_account.password)
+			events	 = Array.new
+			markets	 = Array.new
 
-			events['result'].each do |e|
+			api.get_all_events['result'].each do |e|
 				 if e.valid_event?
-						event					  = Event.new
-						event.id			  = e['event']['id']
-						event.name		  = e['event']['name']
-						event.cc			  = e['event']['countryCode']
-						event.open_date = e['event']['openDate']
-						event.status	  = 'unknown'
+						events << Event.create( id:			   e['event']['id'],
+																		name:		   e['event']['name'],
+																		cc:			   e['event']['countryCode'],
+																		open_date: e['event']['openDate'],
+																		status:	   'unknown' )
 
 						if e['marketCount'] > 0
-							 api.get_market_catalogue(event.id)['result'].each do |m|
-									market							 = Market.new
-									market.market_id		 = m['marketId']
-									market.event_id			 = event.id
-									market.name					 = m['marketName']
-									market.total_matched = m['totalMatched']
-									market.has_worker		 = false
-									market.status				 = 'unknown'
+							 api.get_market_catalogue(e['event']['id'])['result'].each do |m|
+									markets << Market.create(	 market_id:			m['marketId'],
+																						 event_id:			e['event']['id'],
+																						 name:					m['marketName'],
+																						 total_matched: m['totalMatched'],
+																						 has_worker:		false,
+																						 status:				'unknown')
 
-									market.save
 							 end
 						end
-
-						event.save
 
 				 else
 						Sidetiq.logger.error "invalid event "+e.to_s
 				 end
 			end
+
+			Event.import  << events
+			Market.import << markets
 
    end
 end

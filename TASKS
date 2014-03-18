@@ -1,3 +1,5 @@
+drone deve suportar cookies e o seu expire time invez de estar sempre a fazer login
+
 a/w/events.rb
 	 optimizar inserts
 	 21: e.new_event?
@@ -11,6 +13,7 @@ a/m/event.rb
 
 a/m/book.rb
 	 type => string (lay | back)
+	 remove updated_at
 
 l/b/api.rb
 	 error handling
