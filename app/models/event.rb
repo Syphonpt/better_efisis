@@ -7,7 +7,7 @@ class Event < ActiveRecord::Base
 	 validates_presence_of			:open_date
 
    before_save { 
-			self.cc	= cc.downcase
+			self.cc				 = cc.downcase
 	 }
 
 	 scope :not_finished,		  -> { where.not( status: 'finished' ).order(open_date: :asc) }
