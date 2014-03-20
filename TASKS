@@ -15,5 +15,8 @@ a/m/book.rb
 	 type => string (lay | back)
 	 remove updated_at
 
+a/m/account.rb
+	 raise de erro como deve ser
+
 l/b/api.rb
 	 error handling

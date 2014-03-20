@@ -174,20 +174,34 @@ module Betfair
 			#      => error handling quando a ligação falha
 			#      => limpar codigo
 			def login(user,pass)
-				 login_str = "username=#{user}&password=#{pass}"
 
-				 connection = Faraday.new( CERT_ENDPOINT, :ssl => {
-						client_cert: OpenSSL::X509::Certificate.new(File.read('./lib/betfair/client-2048.crt')),
-						client_key:  OpenSSL::PKey::RSA.new(File.read('./lib/betfair/client-2048.key'))}
-				 )
+				 if Account.betfair_valid_ssoid(user,pass)
+						ssoid = Account.betfair_get_ssoid(user,pass).first.ssoid
+						return ssoid
 
-				 resp = connection.post do |req|
-						req.headers['Content-Type'] = CONTENT_TYPE 
-						req.headers['X-Application'] = APP_KEY
-						req.body = login_str
+				 else
+						login_str = "username=#{user}&password=#{pass}"
+
+						connection = Faraday.new( CERT_ENDPOINT, :ssl => {
+							 client_cert: OpenSSL::X509::Certificate.new(File.read('./lib/betfair/client-2048.crt')),
+							 client_key:  OpenSSL::PKey::RSA.new(File.read('./lib/betfair/client-2048.key'))}
+						)
+
+						resp = connection.post do |req|
+							 req.headers['Content-Type'] = CONTENT_TYPE 
+							 req.headers['X-Application'] = APP_KEY
+							 req.body = login_str
+						end
+
+						ssoid = JSON.parse(resp.body)['sessionToken']
+
+						account			  = Account.betfair_by_creds(user,pass).first
+						account.time  = Time.now.to_i
+						account.ssoid = ssoid
+						account.save
+
+						return ssoid 
 				 end
-
-				 return JSON.parse(resp.body)['sessionToken']
 			end
 
 
