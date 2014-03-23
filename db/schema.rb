@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20140319221550) do
     t.datetime "open_date"
     t.string   "cc"
     t.string   "status"
+    t.boolean  "monitored"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -51,7 +52,6 @@ ActiveRecord::Schema.define(version: 20140319221550) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "market_id"
-    t.boolean  "has_worker"
     t.string   "status"
   end
 

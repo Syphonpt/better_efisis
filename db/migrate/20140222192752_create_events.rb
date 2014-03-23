@@ -5,6 +5,7 @@ class CreateEvents < ActiveRecord::Migration
       t.datetime	:open_date
 			t.string		:cc
 			t.string		:status
+			t.boolean		:monitored
 
       t.timestamps
     end
