@@ -5,10 +5,7 @@ class EventWorker
    Sidetiq.logger = Logger.new(STDOUT)
 	 Sidekiq.options[:poll_interval] = 1 
 
-	 recurrence do
-#			daily.hour_of_day(0)
-			hourly.minute_of_hour(7)
-	 end
+	 recurrence do daily.hour_of_day(02) end
 
    def perform
 			api_account = User.where(auth: 1).first.account.where(service: 'betfair').first
@@ -24,7 +21,7 @@ class EventWorker
 						event.name		  = e['event']['name']
 						event.cc			  = e['event']['countryCode']
 						event.open_date = DateTime.parse(e['event']['openDate'])
-						event.status	  = 'unknown'
+						event.status	  = 'not started'
 						event.monitored = false
 
 						events << event

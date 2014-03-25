@@ -2,7 +2,7 @@ class OddsWorker
 	 include Sidekiq::Worker
 	 include Sidetiq::Schedulable
 
-	 recurrence { hourly.minute_of_hour(0,5,10,15,20,25,30,35,40,45,50,55) }
+	 recurrence { minutely.second_of_minute(0,30) }
 	 
 	 Sidetiq.logger = Logger.new(STDOUT)
 
@@ -10,6 +10,10 @@ class OddsWorker
 			timestamp = 0
 
 			case range
+				 when 'soon'
+						value = 300
+						timestamp = $redis.get(range).to_i
+
 				 when 'later'
 						value = 600
 						timestamp = $redis.get(range).to_i
@@ -38,15 +42,15 @@ class OddsWorker
 	 def perform
 			Event.starting_now.each do |e|
 				 unless e.monitored
-#						MonitorWEBWorker.perform_async(e.id)
-						MonitorAPIWorker.perform_async(e.id)
+						MonitorWEBWorker.perform_async(e.id)
 
 						e.monitored = true
 						e.save
 				 end
 			end
 
-			Event.starting_soon.each	  { |e| RefreshOddsWorker.perform_async(e.id) }
+			Event.starting_now.each		  { |e| RefreshOddsWorker.perform_async(e.id) }
+			Event.starting_soon.each	  { |e| RefreshOddsWorker.perform_async(e.id) } if time('soon')
 			Event.starting_later.each	  { |e| RefreshOddsWorker.perform_async(e.id) } if time('later')
 			Event.starting_tomorow.each { |e| RefreshOddsWorker.perform_async(e.id) } if time('tomorow')
 			Event.starting_someday.each { |e| RefreshOddsWorker.perform_async(e.id) } if time('someday')

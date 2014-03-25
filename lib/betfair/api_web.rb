@@ -8,7 +8,6 @@ module Betfair
 				 url = APIWEB_URL + 'eventTimeline?alt=json&locale=en_GB&eventId=' + event_id.to_s
 
 				 connection = Faraday.new(url) do |b|
-						b.response	:logger
 						b.response	:raise_error
 						b.response	:json, :content_type => ACCEPT
 						b.adapter		Faraday.default_adapter

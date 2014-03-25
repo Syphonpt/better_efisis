@@ -4,6 +4,7 @@ module Betfair
 	 KEEP_ENDPOINT = 'https://identitysso.betfair.com/api/keepAlive'
 	 JSON_ENDPOINT = 'https://api.betfair.com/'
 	 JSON_URL		   = '/exchange/betting/json-rpc/v1/'
+	 JSON_ACC_URL  = '/exchange/account/json-rpc/v1/'
 
 	 APP_KEY = '8wrkSHO40RaEx5JR'
 
@@ -86,7 +87,7 @@ module Betfair
 									'eventTypeIds'		=> ['1'],
 									'bspOnly'					=> 'false',
 									'marketStartTime' => {
-										 'from' => 2.hours.from_now,
+										 'from' => 1.hour.from_now,
 										 'to' => 2.days.from_now
 									}
 							 } 
@@ -167,6 +168,58 @@ module Betfair
 				 end
 			end
 
+			def list_orders
+			end
+
+			def place_order(market_id)
+				 header = {
+						'jsonrpc'=> '2.0',
+						'method' => 'SportsAPING/v1.0/placeOrders',
+						'params' => { 
+							 'marketId'			=> '1.113389645', #
+							 'instructions'  => [{
+									'selectionId'=> 1222347,
+									'side'			  => 'BACK',
+									'orderType'  => 'LIMIT',
+									'limitOrder' => {
+										 'size'						=> '2',
+										 'price'						=> 1.20,
+										 'persistenceType' => 'LAPSE'
+									}
+							 }]
+						} 
+				 }
+
+
+				 response = api_call(header)
+				 response.body
+			end
+
+			def update_order
+			end
+
+			def cancel_order
+			end
+
+			def get_account_details
+			end
+
+			def get_account_funds
+				 header = {
+						'jsonrpc'=> '2.0',
+						'method' => 'AccountAPING/v1.0/getAccountFunds',
+				 }
+
+				 connection = Faraday.new(JSON_ENDPOINT, :headers => std_header ) do |b|
+						b.request		:json
+						b.response	:raise_error
+						b.response	:json, :content_type => ACCEPT
+						b.adapter		Faraday.default_adapter
+				 end
+
+				 response = connection.put(JSON_ACC_URL,header)
+				 response.body
+			end
 
 			# Faz o login do utilizador e retorna o session token
 			# https://api.developer.betfair.com/services/webapps/docs/display/1smk3cen4v3lu3yomq5qye0ni/Non-Interactive+%28bot%29+login
