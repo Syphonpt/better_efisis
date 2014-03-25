@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140319221550) do
+ActiveRecord::Schema.define(version: 20140325080044) do
 
   create_table "accounts", force: true do |t|
     t.string   "username"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20140319221550) do
     t.datetime "open_date"
     t.string   "cc"
     t.string   "status"
+    t.boolean  "monitored"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -51,15 +52,20 @@ ActiveRecord::Schema.define(version: 20140319221550) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "market_id"
-    t.boolean  "has_worker"
     t.string   "status"
   end
 
   create_table "runners", force: true do |t|
-    t.integer  "runner_id"
-    t.integer  "selection_id"
     t.string   "name"
-    t.float    "handicap"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "updates", force: true do |t|
+    t.integer  "match_time"
+    t.string   "update_type"
+    t.integer  "runner_id"
+    t.integer  "event_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

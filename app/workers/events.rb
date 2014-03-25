@@ -5,9 +5,7 @@ class EventWorker
    Sidetiq.logger = Logger.new(STDOUT)
 	 Sidekiq.options[:poll_interval] = 1 
 
-	 recurrence do
-			daily.hour_of_day(0)
-	 end
+	 recurrence do daily.hour_of_day(02) end
 
    def perform
 			api_account = User.where(auth: 1).first.account.where(service: 'betfair').first
@@ -18,20 +16,26 @@ class EventWorker
 
 			api.get_all_events['result'].each do |e|
 				 if e.valid_event?
-						events << Event.new( id:			   e['event']['id'],
-																 name:		   e['event']['name'],
-																 cc:			   e['event']['countryCode'],
-																 open_date:	 DateTime.parse(e['event']['openDate']),
-																 status:	   'unknown' )
+						event					  = Event.new
+						event.id			  = e['event']['id']
+						event.name		  = e['event']['name']
+						event.cc			  = e['event']['countryCode']
+						event.open_date = DateTime.parse(e['event']['openDate'])
+						event.status	  = 'not started'
+						event.monitored = false
+
+						events << event
 
 						if e['marketCount'] > 0
 							 api.get_market_catalogue(e['event']['id'])['result'].each do |m|
-									markets << Market.new(	market_id:			m['marketId'],
-																					event_id:			e['event']['id'],
-																					name:					m['marketName'],
-																					total_matched: m['totalMatched'],
-																					has_worker:		false,
-																					status:				'unknown')
+									market						   = Market.new
+									market.market_id		 = m['marketId']
+									market.event_id			 = e['event']['id']
+									market.name					 =	m['marketName']
+									market.total_matched = m['totalMatched']
+									market.status				 = 'unknown'
+
+									markets << market
 
 							 end
 						end

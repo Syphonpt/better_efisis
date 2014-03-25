@@ -13,6 +13,7 @@ gem 'bcrypt-ruby', '~> 3.1.2'
 
 gem 'sidekiq', '2.17.4'
 gem 'sidetiq', '0.5.0'
+gem 'sinatra', '>= 1.3.0', :require => nil
 
 gem 'mechanize' 
 gem 'rest-client'

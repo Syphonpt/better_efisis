@@ -1,12 +1,3 @@
-{"marketId"=>"1.112939194", "marketName"=>"Match Odds", "marketStartTime"=>"2014-03-01T15:00:00.000Z", 
-	 "runners"=>[
-				 {"selectionId"=>69720, "runnerName"=>"Stoke", "handicap"=>0.0, "sortPriority"=>1, 
-						"metadata"=>{"runnerId"=>"62266753"}}, 
-				 {"selectionId"=>1096, "runnerName"=>"Arsenal", "handicap"=>0.0, "sortPriority"=>2, 
-						"metadata"=>{"runnerId"=>"62266754"}}, 
-				 {"selectionId"=>58805, "runnerName"=>"The Draw", "handicap"=>0.0, "sortPriority"=>3, 
-						"metadata"=>{"runnerId"=>"62266755"}}],
-
 {"marketId"=>"1.112939194", "isMarketDataDelayed"=>false, "status"=>"OPEN", "betDelay"=>0, "bspReconciled"=>false, "complete"=>true, "inplay"=>false, "numberOfWinners"=>1, "numberOfRunners"=>3, "numberOfActiveRunners"=>3, "lastMatchTime"=>"2014-02-22T17:18:38.250Z", "totalMatched"=>1855.72, "totalAvailable"=>157669.68, "crossMatching"=>true, "runnersVoidable"=>false, "version"=>692578021, 
 	 "runners"=>[
 			{"selectionId"=>69720, "handicap"=>0.0, "status"=>"ACTIVE", "lastPriceTraded"=>6.8, "totalMatched"=>379.47, 
