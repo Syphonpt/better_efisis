@@ -168,7 +168,23 @@ module Betfair
 				 end
 			end
 
-			def list_orders
+			def list_current_orders(betids = nil, market_ids = nil)
+				 raise 'format error' unless betids.class == NilClass or betids.class == Array
+				 raise 'format error' unless market_ids.class == NilClass or market_ids.class == Array
+
+
+ 				 header = {
+						'jsonrpc'=> '2.0',
+						'method' => 'SportsAPING/v1.0/listCurrentOrders',
+						'params' => {}
+				 }
+
+				 header['params'].store('betIds',betids) unless betids == nil
+				 header['params'].store('marketIds',market_ids) unless market_ids == nil
+
+				 response = api_call(header)
+				 response.body
+
 			end
 
 			def place_order(market_id)
