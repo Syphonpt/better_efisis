@@ -189,10 +189,10 @@ module Betfair
 
 			def place_order(market,selection,side,size,price)
 				 raise 'format error' unless market.class == String
-#				 raise 'format error' unless selection.class == Integer
+	 			 raise 'format error' unless selection.class == Fixnum
 				 raise 'format error' unless side == 'BACK' or side == 'LAY'
 				 raise 'format error' unless size.class == String
-#				 raise 'format error' unless price.class == Integer
+				 raise 'format error' unless price.class == Float
 
 				 header = {
 						'jsonrpc'=> '2.0',
