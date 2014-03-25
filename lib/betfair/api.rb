@@ -168,9 +168,9 @@ module Betfair
 				 end
 			end
 
-			def list_current_orders(betids = nil, market_ids = nil)
-				 raise 'format error' unless betids.class == NilClass or betids.class == Array
-				 raise 'format error' unless market_ids.class == NilClass or market_ids.class == Array
+			def list_current_orders(bet = nil, market = nil)
+				 raise 'format error' unless bet.class == NilClass or bet.class == Array
+				 raise 'format error' unless market.class == NilClass or market.class == Array
 
 
  				 header = {
@@ -179,27 +179,33 @@ module Betfair
 						'params' => {}
 				 }
 
-				 header['params'].store('betIds',betids) unless betids == nil
-				 header['params'].store('marketIds',market_ids) unless market_ids == nil
+				 header['params'].store('betIds',bet) unless bet == nil
+				 header['params'].store('marketIds',market) unless market == nil
 
 				 response = api_call(header)
 				 response.body
 
 			end
 
-			def place_order(market_id)
+			def place_order(market,selection,side,size,price)
+				 raise 'format error' unless market.class == String
+#				 raise 'format error' unless selection.class == Integer
+				 raise 'format error' unless side == 'BACK' or side == 'LAY'
+				 raise 'format error' unless size.class == String
+#				 raise 'format error' unless price.class == Integer
+
 				 header = {
 						'jsonrpc'=> '2.0',
 						'method' => 'SportsAPING/v1.0/placeOrders',
 						'params' => { 
-							 'marketId'			=> '1.113389645', #
+							 'marketId'			=> market, #
 							 'instructions'  => [{
-									'selectionId'=> 1222347,
-									'side'			  => 'BACK',
+									'selectionId'=> selection,
+									'side'			  => side,
 									'orderType'  => 'LIMIT',
 									'limitOrder' => {
-										 'size'						=> '2',
-										 'price'						=> 1.20,
+										 'size'						=> size,
+										 'price'						=> price,
 										 'persistenceType' => 'LAPSE'
 									}
 							 }]
