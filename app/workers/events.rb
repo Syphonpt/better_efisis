@@ -5,14 +5,16 @@ class EventWorker
    Sidetiq.logger = Logger.new(STDOUT)
 	 Sidekiq.options[:poll_interval] = 1 
 
-	 recurrence do daily.hour_of_day(02) end
+#	 recurrence do daily.hour_of_day(02) end
 
+	 recurrence do hourly.minute_of_hour(33) end
    def perform
 			api_account = User.where(auth: 1).first.account.where(service: 'betfair').first
 
-			api			 = Betfair::API.new(api_account.username, api_account.password)
-			markets	 = Array.new
-			events	 = Array.new
+			api			   = Betfair::API.new(api_account.username, api_account.password)
+			markets	   = Array.new
+			events		 = Array.new
+			selections = Array.new
 
 			api.get_all_events['result'].each do |e|
 				 if e.valid_event?
@@ -31,11 +33,21 @@ class EventWorker
 									market						   = Market.new
 									market.market_id		 = m['marketId']
 									market.event_id			 = e['event']['id']
-									market.name					 =	m['marketName']
+									market.name					 = m['marketName']
 									market.total_matched = m['totalMatched']
 									market.status				 = 'unknown'
 
 									markets << market
+
+									m['runners'].each do |r|
+										 selection						  = Selection.new
+										 selection.market_id    = m['marketId']										 
+										 selection.selection_id = r['selectionId']
+										 selection.name		      = r['runnerName']
+										 selection.handicap     = r['handicap']
+
+										 selections << selection
+									end
 
 							 end
 						end
@@ -47,6 +59,7 @@ class EventWorker
 
 			Event.import(events)
 			Market.import(markets)
+			Selection.import(selections)
 
    end
 end

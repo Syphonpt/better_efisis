@@ -63,8 +63,9 @@ ActiveRecord::Schema.define(version: 20140327130515) do
   create_table "selections", force: true do |t|
     t.string   "name"
     t.float    "handicap"
-    t.float    "lastprice"
-    t.float    "totalmatched"
+    t.integer  "selection_id"
+    t.string   "market_id"
+    t.string   "uniq"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
