@@ -9,7 +9,8 @@ class RefreshOddsWorker
 			market_array = Array.new
 
 			market.each do |m|
-				 market_array << m.market_id
+				 market_array << m.market_id if m.name == 'Match Odds'
+				 market_array << m.market_id if m.name.match(/Over\/Under [0-9].5 Goals/)
 			end
 
 			market_array.in_groups_of(10) do |m|

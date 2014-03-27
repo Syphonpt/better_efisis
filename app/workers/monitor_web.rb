@@ -57,42 +57,48 @@ class MonitorWEBWorker
 				 away_name  = response.body['score']['away']['name']
 
 				 runner_home = Runner.select(:id).find_by(name: home_name)
-				 runner_home = Runner.create(name: home_name) if runner_home.nil?
+				 if runner_home.nil?
+						runner_home = Runner.create(name: home_name).id
+				 else
+						runner_home = runner_home.id
+				 end
 
 				 runner_away = Runner.select(:id).find_by(name: away_name)
-				 runner_away = Runner.create(name: away_name) if runner_away.nil?
+				 if runner_away.nil?
+						runner_away = Runner.create(name: away_name).id
+				 else
+						runner_away = runner_away.id
+				 end
 
 				 Event.update(id, status: "IN_PLAY")
 
 				 while true
 						response = Betfair::API_WEB.get_event_timeline(id)
 
-						home_name  = response.body['score']['home']['name']
-						home_score = response.body['score']['home']['score']
-						away_name  = response.body['score']['away']['name']
-						away_score = response.body['score']['away']['score']
+						home_score = response.body['score']['home']['score'] unless response.body['score']['home'].nil?
+						away_score = response.body['score']['away']['score'] unless response.body['score']['away'].nil?
 			 
 						updates = response.body['updateDetails']
 						time_elapsed = response.body['timeElapsed']
 						match_status = response.body['status']
 
-						hash = { id: id,
-										 home_name: home_name, 
-										 home_score: home_score,
-										 runner_home: runner_home,
-										 away_name: away_name,
-										 away_score: away_score,
-										 runner_away: runner_away,
-										 match_status: match_status,
-										 time_elapsed: time_elapsed,
-										 updates: updates
+						hash = { :id						=> id,
+										 :home_name			=> home_name, 
+										 :home_score		=> home_score,
+										 :runner_home		=> runner_home,
+										 :away_name			=> away_name,
+										 :away_score		=> away_score,
+										 :runner_away		=> runner_away,
+										 :match_status	=> match_status,
+										 :time_elapsed	=> time_elapsed,
+										 :updates				=> updates
 						}
 
-						$redis.set(rediskey,hash)
-						sleep 3
+					 $redis.set(rediskey,ActiveSupport::JSON.encode(hash))
+					 sleep 3
 
-						break if match_status == 'COMPLETE'
-						break if response.body['inPlayMatchStatus'] == 'Finished'
+					 break if match_status == 'COMPLETE'
+					 break if response.body['inPlayMatchStatus'] == 'Finished'
 				 end
 
 				 $redis.del(rediskey)
