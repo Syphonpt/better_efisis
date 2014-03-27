@@ -114,7 +114,7 @@ module Betfair
 							 'filter' => { 
 									'eventIds' => event_id,
 							 },
-#							 'marketProjection' => ['RUNNER_METADATA'], 
+							 'marketProjection' => ['RUNNER_METADATA'], 
 							 'maxResults' => 999 
 						}
 				 }

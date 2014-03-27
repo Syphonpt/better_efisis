@@ -1,8 +1,10 @@
 class CreateMarkets < ActiveRecord::Migration
   def change
     create_table :markets do |t|
+			t.string			 :market_id
       t.string			 :name
-      t.integer			 :open_date
+      t.float				 :total_matched
+			t.string			 :status
 
 			t.belongs_to	 :event
 
