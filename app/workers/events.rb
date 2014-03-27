@@ -5,9 +5,8 @@ class EventWorker
    Sidetiq.logger = Logger.new(STDOUT)
 	 Sidekiq.options[:poll_interval] = 1 
 
-#	 recurrence do daily.hour_of_day(02) end
+	 recurrence do daily.hour_of_day(02) end
 
-	 recurrence do hourly.minute_of_hour(33) end
    def perform
 			api_account = User.where(auth: 1).first.account.where(service: 'betfair').first
 
@@ -45,6 +44,7 @@ class EventWorker
 										 selection.selection_id = r['selectionId']
 										 selection.name		      = r['runnerName']
 										 selection.handicap     = r['handicap']
+										 selection.uniq				  = Digest::MD5.hexdigest(m['marketId']+r['selectionId'].to_s)
 
 										 selections << selection
 									end

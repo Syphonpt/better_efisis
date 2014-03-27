@@ -135,6 +135,7 @@ module Betfair
 									'virtualise' => false,
 									'rolloverStakes' => false
 							 },
+							 'orderProjection' => 'EXECUTABLE',
 							 'currencyCode' => 'EUR'
 						}
 				 }
