@@ -3,6 +3,7 @@ drone deve suportar cookies e o seu expire time invez de estar sempre a fazer lo
 a/w/events.rb
 	 optimizar inserts
 	 21: e.new_event?
+	 passar o hashing para o modelo 
 
 a/w/events.rb && a/w/odds_live.rb
 	 a parte de sacar o drone ... DRY it up!

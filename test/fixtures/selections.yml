@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  handicap: 1.5
+  lastprice: 1.5
+  totalmatched: 1.5
+
+two:
+  name: MyString
+  handicap: 1.5
+  lastprice: 1.5
+  totalmatched: 1.5

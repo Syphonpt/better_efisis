@@ -2,6 +2,10 @@
 *.swo
 *.bak
 
+*~
+
+db/migrate/20140327130515_insert_creds.rb
+
 /old
 
 /.bundle
