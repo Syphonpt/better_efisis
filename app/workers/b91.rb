@@ -31,8 +31,8 @@ class B91Worker
 			end
 
 
-#			selection = Book. 
-
+#			selection = Book.
+     
 			api.place_order(market,selection,'BACK',size,2.0)
 	 end
 end

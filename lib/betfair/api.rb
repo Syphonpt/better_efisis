@@ -80,7 +80,7 @@ module Betfair
 			def get_all_events
 				 header = {
 						'jsonrpc'=> '2.0',
-						'method' => 'SportsAPING/v1.0/listEvents',
+						'method' => 'SportsAPING/v1.0/createDeveloperAppKeys',
 						'params' => { 
 							 'filter' => { 
 									'exchangeIds'			=> ['1'],
@@ -97,7 +97,34 @@ module Betfair
 
 				 response = api_call(header)
 				 response.body
-			end
+      end
+
+
+      #
+      # https://api.developer.betfair.com/services/webapps/docs/display/1smk3cen4v3lu3yomq5qye0ni/listEvents
+      # TODO
+      #
+      def generate_App_Key
+        header = {
+            'jsonrpc'=> '2.0',
+            'method' => 'SportsAPING/v1.0/listEvents',
+            'params' => {
+                'filter' => {
+                    'exchangeIds'			=> ['1'],
+                    'eventTypeIds'		=> ['1'],
+                    'bspOnly'					=> 'false',
+                    'marketStartTime' => {
+                        'from' => 1.hour.from_now,
+                        'to' => 2.days.from_now
+                    }
+                }
+            }
+        }
+
+
+        response = api_call(header)
+        response.body
+      end
 
 
 			# Devolve uma lista estática com informação dos mercados

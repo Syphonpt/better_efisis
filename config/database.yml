@@ -10,7 +10,7 @@ development:
   reconnect: false
   pool: 50
   username: root
-  password:
+  password: root
   host: localhost
   port: 3306
 
@@ -24,7 +24,7 @@ test:
   reconnect: false
   pool: 50
   username: root
-  password:
+  password: root
   host: localhost
   port: 3306
 

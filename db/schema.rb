@@ -11,27 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140327130515) do
+ActiveRecord::Schema.define(version: 20140327125507) do
 
   create_table "accounts", force: true do |t|
     t.string   "username"
     t.string   "password"
     t.string   "service"
-    t.string   "uniq"
-    t.string   "ssoid"
-    t.integer  "time"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "uniq"
+    t.string   "ssoid"
+    t.integer  "time"
   end
 
   create_table "books", force: true do |t|
-    t.integer  "selection_id"
     t.float    "price"
     t.float    "size"
-    t.integer  "side"
+    t.integer  "type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "market_id"
+    t.integer  "selection_id"
   end
 
   create_table "events", force: true do |t|
@@ -45,13 +46,13 @@ ActiveRecord::Schema.define(version: 20140327130515) do
   end
 
   create_table "markets", force: true do |t|
-    t.string   "market_id"
     t.string   "name"
     t.float    "total_matched"
-    t.string   "status"
     t.integer  "event_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "market_id"
+    t.string   "status"
   end
 
   create_table "runners", force: true do |t|
