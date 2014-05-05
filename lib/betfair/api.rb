@@ -6,7 +6,9 @@ module Betfair
 	 JSON_URL		   = '/exchange/betting/json-rpc/v1/'
 	 JSON_ACC_URL  = '/exchange/account/json-rpc/v1/'
 
-	 APP_KEY = '8wrkSHO40RaEx5JR'
+	 #APP_KEY = '8wrkSHO40RaEx5JR'
+
+   APP_KEY = '42xTv0nX1zsRCc8I'
 
 	 CONTENT_TYPE = 'application/x-www-form-urlencoded'
 	 ACCEPT = 'application/json'
@@ -73,38 +75,11 @@ module Betfair
 				 response.body
 			end
 
-			# Devolve uma lista de todos os eventos
-			# https://api.developer.betfair.com/services/webapps/docs/display/1smk3cen4v3lu3yomq5qye0ni/listEvents
-			# TODO
-			# => ver o que acontece quando se perde a ligaçao
-			def get_all_events
-				 header = {
-						'jsonrpc'=> '2.0',
-						'method' => 'SportsAPING/v1.0/createDeveloperAppKeys',
-						'params' => { 
-							 'filter' => { 
-									'exchangeIds'			=> ['1'],
-									'eventTypeIds'		=> ['1'],
-									'bspOnly'					=> 'false',
-									'marketStartTime' => {
-										 'from' => 1.hour.from_now,
-										 'to' => 2.days.from_now
-									}
-							 } 
-						}
-				 }
-
-
-				 response = api_call(header)
-				 response.body
-      end
-
-
       #
       # https://api.developer.betfair.com/services/webapps/docs/display/1smk3cen4v3lu3yomq5qye0ni/listEvents
       # TODO
       #
-      def generate_App_Key
+      def get_all_events
         header = {
             'jsonrpc'=> '2.0',
             'method' => 'SportsAPING/v1.0/listEvents',

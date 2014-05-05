@@ -1,4 +1,4 @@
-$redis = Redis.new(:host => 'localhost', :port => 6379)
+  $redis = Redis.new(:host => 'localhost', :port => 6379)
 $redis.set('soon',0)
 $redis.set('later',0)
 $redis.set('tomorow',0)

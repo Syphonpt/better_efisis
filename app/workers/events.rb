@@ -3,9 +3,13 @@ class EventWorker
    include Sidetiq::Schedulable
 
    Sidetiq.logger = Logger.new(STDOUT)
-	 Sidekiq.options[:poll_interval] = 1 
+	 Sidekiq.options[:poll_interval] = 1
 
-	 recurrence do daily.hour_of_day(02) end
+	 recurrence do
+   daily.hour_of_day(02)
+   #  daily.hour_of_day(0).minute_of_hour(1)
+   end
+
 
    def perform
 			api_account = User.where(auth: 1).first.account.where(service: 'betfair').first

@@ -12,7 +12,7 @@
     <data-source source="LOCAL" name="Rails better: test" uuid="46749bda-fbe2-4197-8f62-fb77f75e4e73">
       <driver-ref>mysql</driver-ref>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://127.0.0.1:3306/better_test</jdbc-url>
+      <jdbc-url>jdbc:mysql://127.0.0.1:3306/use</jdbc-url>
       <user-name>root</user-name>
       <user-password>dfd8dfc5dfc5dfde</user-password>
       <libraries />
