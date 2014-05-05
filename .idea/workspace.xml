@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b60a67c3-ef9b-4b4e-80f2-82f5cda96575" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/s" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/redis.log" afterPath="$PROJECT_DIR$/redis.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sidekiq.log" afterPath="$PROJECT_DIR$/sidekiq.log" />
     </list>
     <ignored path="better.iws" />
     <ignored path=".idea/workspace.xml" />
